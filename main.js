@@ -25,11 +25,13 @@ function draw()
       updateNum(reset);
     }
 
+
   if(r >= reset)
     {
       background(0);
       newHue = 1;
       n = 0;
+      resetCfactor();
       r = c * sqrt(n);
     }else
     {
@@ -48,5 +50,8 @@ function updateNum(reset)
                                              + "<br> r = " + r.toFixed(4)
                                              + "<br> hue = " + newHue.toFixed(2)
                                              + "<br> Reset = " + reset.toFixed(0);
+}
 
+function resetCfactor() {
+  c = random(4,30);
 }
