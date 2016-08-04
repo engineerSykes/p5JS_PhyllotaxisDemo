@@ -1,4 +1,4 @@
-var c = 10;
+var c;
 var n = 0;
 var r = 0; //c * sqrt(n);
 var newHue = 1;
@@ -9,6 +9,8 @@ var setup = function()
   createCanvas(400, 400);
   angleMode(DEGREES);
   colorMode(HSB);
+  frameRate(60);
+  resetCfactor();
 }
 
 function draw()
@@ -20,7 +22,7 @@ function draw()
       y = r * sin(angle) + height/2,
       reset = sqrt(canvas.width * canvas.width +canvas.width * canvas.width) / 2;
 
-  if (updateMe % 20 == 1)
+  if (updateMe % 60 == 1)
     {
       updateNum(reset);
     }
@@ -35,7 +37,7 @@ function draw()
       r = c * sqrt(n);
     }else
     {
-      fill(newHue * 6 % 256, 255, 255);
+      fill(newHue * 2 % 256 +220, 255, 255);
       ellipse(x, y, 20, 20);
     }
   newHue += 0.6;
@@ -49,9 +51,12 @@ function updateNum(reset)
   document.getElementById("aside").innerHTML = "n = " + n.toFixed(4)
                                              + "<br> r = " + r.toFixed(4)
                                              + "<br> hue = " + newHue.toFixed(2)
-                                             + "<br> Reset = " + reset.toFixed(0);
+                                             + "<br> Reset = " + reset.toFixed(2)
+                                             + "<br> C = " + c;
 }
 
 function resetCfactor() {
-  c = random(4,30);
+  c = random(4,30).toFixed(0);
+
+  //setInterval("resetCfactor" , 2000);
 }
